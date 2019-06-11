@@ -61,7 +61,7 @@ function addBlogItemsToDOM() {
 		let divAdder = document.createElement("DIV")
 		divAdder.id = `Blog${i}`
 		document.getElementById("SteemFeed").appendChild(divAdder)
-		document.getElementById(`Blog${i}`).innerHTML = steemFeed[i]
+		document.getElementById(`Blog${i}`).innerHTML = steemFeed[i].replace('\n', '<br><br>')
 	}
 
 }
