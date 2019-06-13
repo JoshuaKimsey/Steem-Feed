@@ -51,7 +51,12 @@ function createBlog() {
 
 function createStyling() {
 	let generator = document.head
-	let styleDiv = '<style></style>'
+	let styleDiv = document.createElement('style')
+	styleDiv.id = 'steemFeedStyle'
+	generator.appendChild(styleDiv)
+
+	let styling = '.feed {width: 100%;} .feed img {width: 100% !important; height: 100%}'
+	document.getElementById('steemFeedStyle').innerText = styling
 }
 
 // Adds blog items to array
@@ -69,6 +74,7 @@ function addBlogItemsToDOM() {
 	let data = getSteemData()
 	console.log(data)
 	createBlog()
+	createStyling()
 	getAuthorSteemBlogs(data)
 	console.log(steemFeed.length)
 	for (let i = 0; i < steemFeed.length; i++) {
@@ -76,7 +82,7 @@ function addBlogItemsToDOM() {
 		divAdder.id = `Blog${i}`
 		divAdder.classList.add('feed')
 		document.getElementById("SteemFeed").appendChild(divAdder)
-		document.getElementById(`Blog${i}`).innerHTML = steemFeed[i]
+		document.getElementById(`Blog${i}`).innerHTML = steemFeed[i].replace('\n', '<br>')
 		document.getElementById(`Blog${i}`).insertAdjacentHTML("afterend", '<br><br>')
 	}
 
